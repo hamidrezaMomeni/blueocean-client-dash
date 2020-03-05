@@ -59,7 +59,7 @@ if( ! class_exists( 'CSF' ) ) {
     public static function setup() {
 
       // welcome page
-      self::include_plugin_file( 'views/welcome.php' );
+      //self::include_plugin_file( 'views/welcome.php' );
 
       // setup options
       $params = array();
