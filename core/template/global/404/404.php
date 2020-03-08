@@ -1,5 +1,6 @@
 <?php
 if (!defined('ABSPATH')) exit; // No direct access allowed
+header("HTTP/1.0 404 Not Found");
 ?>
 <!doctype html>
 <html lang="en">
