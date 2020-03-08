@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require('path'),
+    CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -7,5 +8,13 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'assets/js')
-    }
+    },
+    plugins: [
+        new CopyPlugin([
+            {
+                from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
+                to: path.resolve(__dirname, './assets/css/lib/bootstrap/bootstrap.min.css')
+            }
+        ])
+    ]
 };

@@ -10,3 +10,8 @@ function get_option_wp_panel($name)
 
     return '';
 }
+
+function url_wp_panel($dir)
+{
+    return plugins_url($dir, WP_PANEL_FILE);
+}

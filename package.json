@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/wp-panel/wp-panel-plugin#readme",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "ionicons": "^5.0.0"
   },
   "devDependencies": {
