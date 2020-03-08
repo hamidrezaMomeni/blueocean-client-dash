@@ -4,18 +4,19 @@
   background-color: #f8f8f8;
 
   .menu-top.toplevel_page_wp_panel {
+    a.toplevel_page_wp_panel {
+      align-items: center;
+      display: flex;
+      width: 100%;
+      font-family: "Exo 2", serif;
 
-    &.current {
-      background-color: $color-primary !important;
-    }
+      &.wp-menu-open {
+        background-color: $color-primary !important;
+      }
 
-    align-items: center;
-    display: flex;
-    width: 100%;
-    font-family: "Exo 2", serif;
-
-    img {
-      padding-top: 7px !important;
+      img {
+        padding-top: 7px !important;
+      }
     }
   }
 
