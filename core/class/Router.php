@@ -62,12 +62,12 @@ class Router
 
 
         //default route
-        $default_list = ['login' => 1, 'register' => 1, 'forget' => 1, 'verify' => 1];
+        $default_list = ['login', 'register', 'forget', 'verify'];
 
-        if (!isset($default_list[$page]) && !is_user_logged_in())
+        if (!in_array($page, $default_list) && !is_user_logged_in())
             return wp_redirect('http://wordpress.develop/panel/login');
 
-        if (is_user_logged_in() && isset($default_list[$page]))
+        if (is_user_logged_in() && in_array($page, $default_list))
             return wp_redirect('http://wordpress.develop/panel/index');
 
         $data = $list[$page];
