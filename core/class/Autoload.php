@@ -14,29 +14,39 @@ if (!defined('ABSPATH')) exit; // No direct access allowed
  */
 class Autoload
 {
-
-    protected static $prefix = 'wp_panel';
-    protected static $admin_page;
-
+    protected static $prefix = 'wp_panel', $slug;
 
     static function init()
     {
+        // includes files
+        self::includes();
+
         add_action('plugins_loaded', 'wp_panel\Autoload::language');
         add_action('plugins_loaded', 'wp_panel\Autoload::admin_page');
         add_action('admin_enqueue_scripts', 'wp_panel\Autoload::admin_enqueue', 20, 1);
+        add_action('init', 'wp_panel\Autoload::rewrite');
+        add_action('parse_query', 'wp_panel\Autoload::rewrite_param');
+
+        // set slug
+        self::$slug = get_option_wp_panel('slug') == '' ? 'panel' : get_option_wp_panel('slug');
+
     }
 
-    /**
-     * Install Language
-     */
+    static private function includes()
+    {
+        // load global functions
+        include(plugin_dir_path(WP_PANEL_FILE) . '/core/functions/global.php');
+
+        // load Router
+        include(plugin_dir_path(WP_PANEL_FILE) . '/core/class/Router.php');
+
+    }
+
     static function language()
     {
         load_plugin_textdomain('WP_PANEL', false, dirname(plugin_basename(WP_PANEL_FILE)) . '/languages');
     }
 
-    /**
-     * Install Admin Style And Script
-     */
     static function admin_enqueue()
     {
         // Set Info Plugin
@@ -54,9 +64,6 @@ class Autoload
 
     }
 
-    /**
-     * Install Admin Page by codestar
-     */
     static function admin_page()
     {
         // load CSF
@@ -75,11 +82,6 @@ class Autoload
         self::set_plugin_info();
     }
 
-    static function change_copy_right_codestar()
-    {
-        return '';
-    }
-
     static function set_plugin_info()
     {
         CSF::createOptions(self::$prefix, array(
@@ -92,16 +94,44 @@ class Autoload
             'class' => 'wp-panel'
         ));
 
+        // Load Section Panel Admin
+        Autoload::createSection();
+
+    }
+
+    static function createSection()
+    {
+
         CSF::createSection(self::$prefix, array(
-            'title' => __('Wp Panel', 'WP_PANEL'),
-            'fields' => array()
+            'title' => __('Basic Settings', 'WP_PANEL'),
+            'menu_hidden' => true,
+            'fields' => array(
+                // slug
+                array(
+                    'id' => 'slug',
+                    'type' => 'text',
+                    'title' => __('Wp Panel Address', 'WP_PANEL'),
+                    'placeholder' => __('Wp Panel Address', 'WP_PANEL'),
+                    'default' => 'panel',
+                ),
+            )
+        ));
+        CSF::createSection(self::$prefix, array(
+            'title' => __('Other Settings', 'WP_PANEL'),
+            'menu_hidden' => true,
+            'fields' => array(
+                // slug
+                array(
+                    'id' => 'slug',
+                    'type' => 'text',
+                    'title' => __('Wp Panel Address', 'WP_PANEL'),
+                    'placeholder' => __('Wp Panel Address', 'WP_PANEL'),
+                    'default' => 'panel',
+                ),
+            )
         ));
     }
 
-    /**
-     * @param $msg
-     * @param string $type
-     */
     public static function alert($msg, $type = 'error')
     {
         ?>
@@ -109,5 +139,22 @@ class Autoload
             <p><?= $msg ?></p>
         </div>
         <?php
+    }
+
+    static function rewrite()
+    {
+
+        add_rewrite_tag('%' . 'param' . '%', '([^&]+)');
+        add_rewrite_rule('^' . self::$slug . '/?$', 'index.php?param=' . self::$slug, 'top');
+        add_rewrite_rule('^' . self::$slug . '/(.+)/?$', 'index.php?param=' . self::$slug . '&pagename=$matches[1]', 'top');
+        flush_rewrite_rules();
+    }
+
+    static function rewrite_param()
+    {
+        if (false !== get_query_var('param') && get_query_var('param') == self::$slug) {
+            (new Router())->index(get_query_var('pagename'));
+            exit;
+        }
     }
 }
