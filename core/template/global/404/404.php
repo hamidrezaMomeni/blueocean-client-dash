@@ -8,9 +8,7 @@ header("HTTP/1.0 404 Not Found");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= __('404 - Page Not Found!', 'wp_panel') ?></title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
-
+    
     <link href="<?= url_wp_panel('assets/css/lib/bootstrap/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?= url_wp_panel('assets/css/dashboard/404.css') ?>" rel="stylesheet">
 
