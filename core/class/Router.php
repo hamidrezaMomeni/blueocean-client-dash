@@ -24,21 +24,7 @@ class Router
         ];
 
         $list = apply_filters('blue_ocean_cd_router', $list);
-        /*[
-            'index' => [
-                'include' => 'path php',
-                'auth' => true,
-                'title' => 'test title',
-                'css' => [
-                    'url',
-                    'url2',
-                ],
-                'js' => [
-                    'url',
-                    'url2',
-                ],
-            ]
-        ];*/
+
         if (!isset($list[$pagename]))
             return $this->NotFound();
 
@@ -53,7 +39,8 @@ class Router
 
     public function NotFound()
     {
-        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php');
+        include(apply_filters('blue_ocean_cd_path_404', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php'));
+        return null;
     }
 
     public function login($page, $list)
@@ -65,14 +52,18 @@ class Router
         $default_list = ['login', 'register', 'forget', 'verify'];
 
         if (!in_array($page, $default_list) && !is_user_logged_in())
-            return wp_redirect('http://wordpress.develop/panel/login');
+            return wp_redirect(url_panel_blue_ocean_cd('login'));
 
         if (is_user_logged_in() && in_array($page, $default_list))
-            return wp_redirect('http://wordpress.develop/panel/index');
+            return wp_redirect(url_panel_blue_ocean_cd('index'));
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
+        include(apply_filters('blue_ocean_cd_path_404', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php'));
+
+        include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
+        return null;
+
     }
 
     public function dashboard($page, $list)
@@ -81,6 +72,9 @@ class Router
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
+        include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
+
+        return null;
+
     }
 }
