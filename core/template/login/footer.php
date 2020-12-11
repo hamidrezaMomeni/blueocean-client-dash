@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH')) exit; // No direct access allowed
-do_action('wp_panel_footer_login');
+do_action('blue_ocean_cd_footer', 'login');
 ?>
 
 </body>
