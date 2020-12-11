@@ -15,7 +15,7 @@ class Core
 
     static function rewrite()
     {
-        $slug = get_option_bo_client_dash('slug') == '' ? 'panel' : get_option_bo_client_dash('slug');
+        $slug = get_option_blue_ocean_cd('slug') == '' ? 'panel' : get_option_blue_ocean_cd('slug');
 
         add_rewrite_tag('%param%', '([^&]+)');
         add_rewrite_tag('%subparam%', '([^&]+)');
@@ -26,7 +26,7 @@ class Core
 
     static function rewrite_param()
     {
-        $slug = get_option_bo_client_dash('slug') == '' ? 'panel' : get_option_bo_client_dash('slug');
+        $slug = get_option_blue_ocean_cd('slug') == '' ? 'panel' : get_option_blue_ocean_cd('slug');
 
         if (false !== get_query_var('param') && get_query_var('param') == $slug) {
             echo (new Router())->index(get_query_var('subparam'));
