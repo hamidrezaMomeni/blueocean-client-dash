@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit; // No direct access allowed
 
-function get_option_wp_panel($name)
+function get_option_bo_client_dash($name)
 {
-    $options = get_option('wp_panel'); // unique id of the framework
+    $options = get_option('bo_client_dash'); // unique id of the framework
 
     if (isset($options[$name]))
         return $options[$name];
@@ -11,7 +11,7 @@ function get_option_wp_panel($name)
     return '';
 }
 
-function url_wp_panel($dir)
+function url_bo_client_dash($dir)
 {
-    return plugins_url($dir, WP_PANEL_FILE);
+    return plugins_url($dir, BO_CLIENT_DASH_FILE);
 }
