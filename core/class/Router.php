@@ -12,18 +12,18 @@ class Router
     {
         $list = [
             'login' => [
-                'include' => plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/page/login.php',
+                'include' => plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/page/login.php',
                 'auth' => false,
-                'title' => __('Login to User Area', 'wp_panel'),
+                'title' => __('Login to User Area', 'BLUE_OCEAN_CD'),
             ],
             'index' => [
-                'include' => plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/page/login.php',
+                'include' => plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/page/login.php',
                 'auth' => true,
-                'title' => __('Login to User Area', 'wp_panel'),
+                'title' => __('Login to User Area', 'BLUE_OCEAN_CD'),
             ]
         ];
 
-        $list = apply_filters('wp_panel_router', $list);
+        $list = apply_filters('blue_ocean_cd_router', $list);
         /*[
             'index' => [
                 'include' => 'path php',
@@ -53,7 +53,7 @@ class Router
 
     public function NotFound()
     {
-        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/global/404/404.php');
+        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php');
     }
 
     public function login($page, $list)
@@ -72,7 +72,7 @@ class Router
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/index.php');
+        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
     }
 
     public function dashboard($page, $list)
@@ -81,6 +81,6 @@ class Router
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/index.php');
+        return include(plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/login/index.php');
     }
 }
