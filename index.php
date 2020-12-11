@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: BlueOcean Client Dash
- * Plugin URI: https://github.com/wp-panel/wp-panel-plugin
+ * Plugin URI: https://github.com/Blue-Ocean-Plus/blueocean-client-dash
  * Description: client dashboard wordpress
  * Version: 1.0
  * Author: blueocean.plus
