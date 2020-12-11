@@ -12,12 +12,12 @@ class Router
     {
         $list = [
             'login' => [
-                'include' => plugin_dir_path(WP_PANEL_FILE) . '/core/template/login/page/login.php',
+                'include' => plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/page/login.php',
                 'auth' => false,
                 'title' => __('Login to User Area', 'wp_panel'),
             ],
             'index' => [
-                'include' => plugin_dir_path(WP_PANEL_FILE) . '/core/template/login/page/login.php',
+                'include' => plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/page/login.php',
                 'auth' => true,
                 'title' => __('Login to User Area', 'wp_panel'),
             ]
@@ -53,7 +53,7 @@ class Router
 
     public function NotFound()
     {
-        return include(plugin_dir_path(WP_PANEL_FILE) . '/core/template/global/404/404.php');
+        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/global/404/404.php');
     }
 
     public function login($page, $list)
@@ -72,7 +72,7 @@ class Router
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(WP_PANEL_FILE) . '/core/template/login/index.php');
+        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/index.php');
     }
 
     public function dashboard($page, $list)
@@ -81,6 +81,6 @@ class Router
 
         $data = $list[$page];
 
-        return include(plugin_dir_path(WP_PANEL_FILE) . '/core/template/login/index.php');
+        return include(plugin_dir_path(BO_CLIENT_DASH_FILE) . '/core/template/login/index.php');
     }
 }
