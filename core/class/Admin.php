@@ -9,7 +9,7 @@ use CSF;
 
 class Admin
 {
-    public static $prefix = 'bo_client_dash';
+    public static $prefix = 'blue_ocean_cd';
 
     static function set_plugin_info()
     {
