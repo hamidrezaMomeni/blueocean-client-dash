@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wp_panel;
+namespace BlueOceanClientDash;
 
 if (!defined('ABSPATH')) exit; // No direct access allowed
 
