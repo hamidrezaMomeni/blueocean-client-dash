@@ -1,1 +1,2 @@
-# wp-panel-plugin
+# BlueOcean Client Dash
+client dashboard for wordpress
