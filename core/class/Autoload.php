@@ -18,7 +18,7 @@ class Autoload
         // includes files
         static::includes();
 
-        add_action('plugins_loaded', 'BlueOceanClientDash\Admin::language');
+        add_action('plugins_loaded', 'BlueOceanClientDash\Core::language');
         add_action('plugins_loaded', 'BlueOceanClientDash\Admin::admin_page');
         add_action('admin_enqueue_scripts', 'BlueOceanClientDash\Admin::admin_enqueue', 20, 1);
         add_action('init', 'BlueOceanClientDash\Core::rewrite');
