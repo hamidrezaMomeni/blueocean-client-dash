@@ -6,14 +6,14 @@
  * Version: 1.0
  * Author: blueocean.plus
  * Author URI: https://blueocean.plus
- * Text Domain: BO_CLIENT_DASH
+ * Text Domain: BLUE_OCEAN_CD
  * Domain Path: /languages
  * License: MIT
  * Requires PHP: 5.6
  **/
 if (!defined('ABSPATH')) exit; // No direct access allowed
 
-define('BO_CLIENT_DASH_FILE', __FILE__);
+define('BLUE_OCEAN_CD_FILE', __FILE__);
 
 
 /**
