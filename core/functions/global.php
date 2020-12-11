@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit; // No direct access allowed
 
-function get_option_bo_client_dash($name)
+function get_option_blue_ocean_cd($name)
 {
-    $options = get_option('bo_client_dash'); // unique id of the framework
+    $options = get_option('blue_ocean_cd'); // unique id of the framework
 
     if (isset($options[$name]))
         return $options[$name];
@@ -11,7 +11,7 @@ function get_option_bo_client_dash($name)
     return '';
 }
 
-function url_bo_client_dash($dir)
+function url_blue_ocean_cd($dir)
 {
-    return plugins_url($dir, BO_CLIENT_DASH_FILE);
+    return plugins_url($dir, BLUE_OCEAN_CD_FILE);
 }
