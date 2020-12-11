@@ -19,7 +19,7 @@ class Autoload
     static function init()
     {
         // includes files
-        self::includes();
+        static::includes();
 
         add_action('plugins_loaded', 'BlueOceanClientDash\Autoload::language');
         add_action('plugins_loaded', 'BlueOceanClientDash\Autoload::admin_page');
@@ -28,7 +28,7 @@ class Autoload
         add_action('parse_query', 'BlueOceanClientDash\Autoload::rewrite_param');
 
         // set slug
-        self::$slug = get_option_bo_client_dash('slug') == '' ? 'panel' : get_option_bo_client_dash('slug');
+        static::$slug = get_option_bo_client_dash('slug') == '' ? 'panel' : get_option_bo_client_dash('slug');
 
     }
 
@@ -72,22 +72,22 @@ class Autoload
         // Control core classes for avoid errors
         if (!class_exists('CSF')) {
             add_action('admin_notices', function () {
-                self::alert(__('ERROR CLASS EXIST CSF', 'BO_CLIENT_DASH'));
+                static::alert(__('ERROR CLASS EXIST CSF', 'BO_CLIENT_DASH'));
             });
             return;
         }
 
 
         // Set Admin Option
-        self::set_plugin_info();
+        static::set_plugin_info();
     }
 
     static function set_plugin_info()
     {
-        CSF::createOptions(self::$prefix, array(
+        CSF::createOptions(static::$prefix, array(
             'menu_title' => __('Wp Panel', 'BO_CLIENT_DASH'),
             'framework_title' => "<img src='" . plugins_url('assets/images/logo.svg', BO_CLIENT_DASH_FILE) . "' alt=''/>" . __('Wp Panel', 'BO_CLIENT_DASH'),
-            'menu_slug' => self::$prefix,
+            'menu_slug' => static::$prefix,
             'menu_icon' => plugins_url('assets/images/icon.svg', BO_CLIENT_DASH_FILE),
             'show_bar_menu' => false,
             'theme' => 'light',
@@ -102,7 +102,7 @@ class Autoload
     static function createSection()
     {
 
-        CSF::createSection(self::$prefix, array(
+        CSF::createSection(static::$prefix, array(
             'title' => __('Basic Settings', 'BO_CLIENT_DASH'),
             'menu_hidden' => true,
             'fields' => array(
@@ -116,7 +116,7 @@ class Autoload
                 ),
             )
         ));
-        CSF::createSection(self::$prefix, array(
+        CSF::createSection(static::$prefix, array(
             'title' => __('Other Settings', 'BO_CLIENT_DASH'),
             'menu_hidden' => true,
             'fields' => array(
@@ -145,14 +145,14 @@ class Autoload
     {
 
         add_rewrite_tag('%' . 'param' . '%', '([^&]+)');
-        add_rewrite_rule('^' . self::$slug . '/?$', 'index.php?param=' . self::$slug, 'top');
-        add_rewrite_rule('^' . self::$slug . '/(.+)/?$', 'index.php?param=' . self::$slug . '&pagename=$matches[1]', 'top');
+        add_rewrite_rule('^' . static::$slug . '/?$', 'index.php?param=' . static::$slug, 'top');
+        add_rewrite_rule('^' . static::$slug . '/(.+)/?$', 'index.php?param=' . static::$slug . '&pagename=$matches[1]', 'top');
         flush_rewrite_rules();
     }
 
     static function rewrite_param()
     {
-        if (false !== get_query_var('param') && get_query_var('param') == self::$slug) {
+        if (false !== get_query_var('param') && get_query_var('param') == static::$slug) {
             (new Router())->index(get_query_var('pagename'));
             exit;
         }
