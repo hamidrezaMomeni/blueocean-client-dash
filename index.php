@@ -20,6 +20,6 @@ define('BLUE_OCEAN_CD_FILE', __FILE__);
  * Load Core Class
  */
 if (!class_exists('BlueOceanClientDash\Autoload', false))
-    include(plugin_dir_path(__FILE__) . '/core/class/Autoload.php');
+    include(plugin_dir_path(__FILE__) . '/core/class/core/Autoload.php');
 
 BlueOceanClientDash\Autoload::init();
