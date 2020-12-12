@@ -31,9 +31,9 @@ class Autoload
 
         $includes = [
             '/core/functions/global.php',
-            '/core/class/Core.php',
-            '/core/class/Admin.php',
-            '/core/class/Router.php',
+            '/core/class/core/Core.php',
+            '/core/class/core/Admin.php',
+            '/core/class/core/Router.php',
         ];
 
         foreach ($includes as $include)
