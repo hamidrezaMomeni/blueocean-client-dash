@@ -20,7 +20,8 @@ class Admin
             'menu_icon' => plugins_url('assets/images/icon.svg', BLUE_OCEAN_CD_FILE),
             'show_bar_menu' => false,
             'theme' => 'light',
-            'class' => 'wp-panel'
+            'class' => 'blue-ocean-cd',
+            'footer_credit' => ' '
         ));
 
         // Load Section Panel Admin
