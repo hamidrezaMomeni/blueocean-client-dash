@@ -25,12 +25,15 @@ class Router
 
         // 'login', 'register', 'forget', 'verify'
         if (in_array($pagename, $this->login_router) && !is_user_logged_in())
-            return $this->$this->login($pagename, $list);
+            return $this->login($pagename, $list);
 
         if (in_array($pagename, $this->login_router) && is_user_logged_in())
             return wp_redirect(url_panel_blue_ocean_cd(''));
 
         $page = $list[$pagename];
+
+        if ((!isset($page['auth']) && !is_user_logged_in()) || (isset($page['auth']) && $page['auth'] && !is_user_logged_in()))
+            return wp_redirect(url_panel_blue_ocean_cd('login'));
 
         if ((!isset($page['auth']) && is_user_logged_in()) || (isset($page['auth']) && $page['auth'] && is_user_logged_in()))
             return $this->dashboard($pagename, $list);
@@ -38,26 +41,22 @@ class Router
         if (isset($page['auth']) && !$page['auth'])
             return $this->page($pagename, $list);
 
-        return $this->login($pagename, $list);
+//        return $this->login($pagename, $list);
     }
 
     public function NotFound()
     {
-        include(apply_filters('blue_ocean_cd_path_404', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php'));
+        include(apply_filters('blue_ocean_cd_theme_path', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/default/') . 'global/404/404.php');
         return null;
     }
 
     public function login($page, $list)
     {
-        global $data;
 
         if (is_user_logged_in())
             return wp_redirect(url_panel_blue_ocean_cd(''));
 
-        $data = $list[$page];
-
-        include(apply_filters('blue_ocean_cd_path_404', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/global/404/404.php'));
-
+        include(apply_filters('blue_ocean_cd_theme_path', plugin_dir_path(BLUE_OCEAN_CD_FILE) . '/core/template/default/') . "{$page}/index.php");
         return null;
 
     }
