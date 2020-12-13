@@ -19,8 +19,9 @@
   },
   "homepage": "https://github.com/Blue-Ocean-Plus/blueocean-client-dash#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "ionicons": "^5.0.0"
+    "ionicons": "^5.0.0",
+    "animate.css": "^4.1.0",
+    "bootstrap": "^4.5.2"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",

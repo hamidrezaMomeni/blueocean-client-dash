@@ -1,0 +1,29 @@
+@import "_variables.scss";
+@import "_animation.scss";
+@import "_fonts.scss";
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+html {
+  height: 100%;
+
+  body {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/bg.jpg);
+    height: 100%;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+  }
+}
