@@ -14,7 +14,6 @@ $favicon = apply_filters('blue_ocean_cd_favicon', url_blue_ocean_cd('assets/imag
     <title><?= apply_filters('title', __('Log in', 'BLUE_OCEAN_CD'), 'login') ?></title>
 
     <!-- Styles -->
-    <link href="<?= url_blue_ocean_cd('assets/css/lib/bootstrap/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?= url_blue_ocean_cd('assets/css/dashboard/login-register.css') ?>" rel="stylesheet">
 
     <!-- Favicon -->

@@ -3,18 +3,19 @@ const path = require('path'),
 
 module.exports = {
     entry: {
-        admin: './resources/js/admin.js'
+        admin: './resources/js/admin.js',
+        login: './resources/js/login.js'
     },
 
     output: {
         path: path.resolve(__dirname, 'assets/js')
     },
     plugins: [
-        new CopyPlugin([
-            {
-                from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
-                to: path.resolve(__dirname, './assets/css/lib/bootstrap/bootstrap.min.css')
-            }
-        ])
+        // new CopyPlugin([
+        //     {
+        //         from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
+        //         to: path.resolve(__dirname, './assets/css/lib/bootstrap/bootstrap.min.css')
+        //     }
+        // ])
     ]
 };
