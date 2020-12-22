@@ -15,7 +15,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 
-  *:focus {
+  input:focus {
     outline: 0 !important;
     box-shadow: none !important;
   }
