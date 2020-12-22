@@ -7,6 +7,7 @@ $data = [
     'remember' => __('keep me logged in', 'BLUE_OCEAN_CD'),
     'dont-acc' => __("Don't have an account?", 'BLUE_OCEAN_CD'),
     'sign-up' => __("Sign up", 'BLUE_OCEAN_CD'),
+    'sign-in' => __("Log in", 'BLUE_OCEAN_CD'),
     'forgot-pass' => __("Forgot password?", 'BLUE_OCEAN_CD'),
     'background' => url_blue_ocean_cd('assets/images/bg-login.jpg'),
     'fields' => [
@@ -69,7 +70,7 @@ $data = [
                         </label>
                     </div>
                     <div class="form-group form-group-btn">
-                        <button type="button" class="btn btn-secondary" disabled>Log in</button>
+                        <button type="button" class="btn btn-secondary" disabled><?= $data['sign-in'] ?></button>
                     </div>
                     <div class="form-group forgot-register">
                         <p>
@@ -83,32 +84,7 @@ $data = [
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-flex" style="background-image: url('<?= $data['background'] ?>')">
-                <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <?php
-                        $i = 0;
-                        foreach ($data['sliders'] as $slider) { ?>
-                            <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
-                                <img src="<?= $slider['img'] ?>" class="" alt="<?= $slider['title'] ?>">
-                                <h2><?= $slider['title'] ?></h2>
-                                <p><?= $slider['desc'] ?></p>
-                            </div>
-                            <?php
-                            $i++;
-                        } ?>
-                    </div>
-                    <ol class="carousel-indicators">
-                        <?php
-                        $i = 0;
-                        foreach ($data['sliders'] as $slider) { ?>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="<?= $i ?>"
-                                class="<?= $i == 0 ? 'active' : '' ?>"></li>
-                            <?php
-                            $i++;
-                        }
-                        ?>
-                    </ol>
-                </div>
+                <?php include(plugin_dir_path(__FILE__) . '/slider.php'); ?>
             </div>
         </div>
     </div>
