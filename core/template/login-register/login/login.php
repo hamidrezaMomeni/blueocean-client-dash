@@ -8,6 +8,7 @@ $data = \BlueOceanClientDash\Login::data();
     <div class="bg animate__animated animate__fadeIn">
         <div class="box-login-register">
             <div class="col-lg-5 col-md-12">
+                <input type="hidden" name="nonce" value="<?= wp_create_nonce("blue_ocean_cd_login"); ?>">
                 <div class="scroll">
                     <h1><?= $data['title'] ?></h1>
                     <p><?= $data['desc'] ?></p>
@@ -25,7 +26,12 @@ $data = \BlueOceanClientDash\Login::data();
                         </label>
                     </div>
                     <div class="form-group form-group-btn">
-                        <button type="button" class="btn btn-secondary" disabled><?= $data['sign-in'] ?></button>
+                        <button type="button" class="btn btn-secondary submit" disabled>
+                            <span><?= $data['sign-in'] ?></span>
+                            <div class="spinner-border spinner-border-sm text-light d-none" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
                     </div>
                     <div class="form-group forgot-register">
                         <p>
@@ -44,3 +50,4 @@ $data = \BlueOceanClientDash\Login::data();
         </div>
     </div>
 </div>
+<div class="alert-box"></div>
