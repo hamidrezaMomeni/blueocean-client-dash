@@ -106,7 +106,11 @@ class Login
             wp_register_script($key, $style);
 
         wp_localize_script("login-register-script", 'login',
-            apply_filters('blue_ocean_cd_localize_script_login', ['ajaxurl' => admin_url('admin-ajax.php')]));
+            apply_filters('blue_ocean_cd_localize_script_login',
+                [
+                    'ajaxurl' => admin_url('admin-ajax.php'),
+                    'fail_msg' => __('The request failed, please try again', 'BLUE_OCEAN_CD'),
+                ]));
 
         // Print
         foreach ($scripts as $key => $style)
@@ -116,8 +120,30 @@ class Login
 
     static function login()
     {
+        $data = $_POST;
+        if (!isset($data['nonce']) || !wp_verify_nonce($data['nonce'], "blue_ocean_cd_login"))
+            die(json_encode(['status' => 'fail', 'msg' => __('Token is invalid', 'BLUE_OCEAN_CD')]));
 
-        return 'asdad';
+        if (!isset($data['username']) || !isset($data['password']))
+            die(json_encode(['status' => 'fail', 'msg' => __('username and password required', 'wc_hamrah')]));
+
+        // remove filter Advanced noCaptcha & invisible Captcha
+        remove_all_filters('authenticate', 999);
+
+        $data = apply_filters('blue_ocean_cd_fields_post_login', $data);
+
+        // create login form
+        $user = wp_authenticate( wp_unslash($data['username']), $data['password'] );
+
+        // check error login
+        if (is_wp_error($user))
+            die(json_encode(['status' => 'fail', 'msg' => strip_tags($user->get_error_message())]));
+
+        wp_set_auth_cookie($user->ID, true, is_ssl());
+
+        do_action('wp_login', $user->user_login, $user);
+
+        die(json_encode(['status' => 'ok', 'msg' => __('Login completed successfully. Please wait to be transferred to the panel', 'BLUE_OCEAN_CD')]));
     }
 
 

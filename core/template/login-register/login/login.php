@@ -50,4 +50,6 @@ $data = \BlueOceanClientDash\Login::data();
         </div>
     </div>
 </div>
-<div class="alert-box"></div>
+<div class="alert-box">
+
+</div>
