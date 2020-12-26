@@ -9,7 +9,7 @@ $data = [
     'sign-up' => __("Sign up", 'BLUE_OCEAN_CD'),
     'sign-in' => __("Log in", 'BLUE_OCEAN_CD'),
     'forgot-pass' => __("Forgot password?", 'BLUE_OCEAN_CD'),
-    'background' => url_blue_ocean_cd('assets/images/bg-login.jpg'),
+    'background' => url_blue_ocean_cd('assets/images/bg-login.png'),
     'fields' => [
         [
             'id' => 'username',
