@@ -34,6 +34,7 @@ class Autoload
             '/core/class/core/Core.php',
             '/core/class/core/Admin.php',
             '/core/class/core/Router.php',
+            '/core/class/login-register/LoginRegister.php',
         ];
 
         foreach ($includes as $include)
