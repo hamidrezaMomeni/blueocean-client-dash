@@ -10,6 +10,7 @@ class Login
     static function init()
     {
         add_action('blue_ocean_cd_header', '\BlueOceanClientDash\Login::style');
+        add_action('blue_ocean_cd_footer', '\BlueOceanClientDash\Login::script');
         add_action('wp_ajax_nopriv_blue_ocean_cd_login', '\BlueOceanClientDash\Login::login');
     }
 
@@ -85,6 +86,31 @@ class Login
         // Print
         foreach ($styles as $key => $style)
             wp_print_styles($key);
+
+    }
+
+    static function script($type)
+    {
+        if ($type != 'login')
+            return null;
+
+        $scripts = [
+            'login-register-script' => url_blue_ocean_cd('assets/js/login.js')
+        ];
+
+        $scripts = apply_filters('blue_ocean_cd_scripts_login', $scripts);
+
+
+        // Registers
+        foreach ($scripts as $key => $style)
+            wp_register_script($key, $style);
+
+        wp_localize_script("login-register-script", 'login',
+            apply_filters('blue_ocean_cd_localize_script_login', ['ajaxurl' => admin_url('admin-ajax.php')]));
+
+        // Print
+        foreach ($scripts as $key => $style)
+            wp_print_scripts($key);
 
     }
 
