@@ -48,6 +48,8 @@ $data = [
     ]
 ];
 
+$data['fields'] = apply_filters('blue_ocean_cd_fields_login', $data['fields']);
+
 ?>
 <div class="flexbox-container">
     <div class="bg animate__animated animate__fadeIn">
